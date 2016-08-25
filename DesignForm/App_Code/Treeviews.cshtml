@@ -1,0 +1,34 @@
+﻿@helper GetTreeView(Focus.Security.DataStructs.DetailedMenuPermission[] siteMenu, int MenuGroupId)
+{
+foreach (var mainMenu in siteMenu.Where(a => a.MenuGroupId.Equals(MenuGroupId)))
+{
+        <li>
+            @{ var subMenu = siteMenu.Where(a => a.MenuGroupId.Equals(mainMenu.MenuId)).Count();}
+            @if (subMenu > 0)
+            {
+                <span class="glyphicon glyphicon-plus-sign">&nbsp;</span>
+            }
+            else
+            {
+                <span style="width:15px;display:inline-block;color:aqua">&nbsp;O</span>
+            }
+            <span class="mouserOvers"><a id="@mainMenu.MenuId">@mainMenu.MenuText.Replace("_", string.Empty)</a></span>
+            @if (subMenu > 0)
+            {
+                if (MenuGroupId == -1)
+                {
+                <ul style="border-bottom:2px solid #e6e5e5;">
+                    @Treeviews.GetTreeView(siteMenu, mainMenu.MenuId)
+                </ul>
+                }
+                else
+                {
+                    <ul>
+                        @Treeviews.GetTreeView(siteMenu, mainMenu.MenuId)
+                    </ul>
+                }
+                @* Recursive  Call for Populate Sub items here*@
+            }
+        </li>
+                }
+}

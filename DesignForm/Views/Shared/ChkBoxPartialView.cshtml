@@ -1,0 +1,36 @@
+﻿@using Focus.Security.DataStructs;
+@using Focus.Common.DataStructs;
+@using DesignForm.Models;
+
+@{ 
+    string strEnumValue = "";
+    DetailedMenuPermission[] objdetailedMenuPermission = ReadProfile.Get_detailedMenuPermission();
+}
+    @foreach (var item in Enum.GetValues(typeof(MenuActions)))
+    {
+        strEnumValue += ((int)item) + ",";
+        <div class="checkbox" style="margin-left:5%;padding-top:1px;display :none;" id="div_@((int)item)">
+            <label>
+                @Html.CheckBox(((int)item).ToString(), false, new { id = "chk_"+((int)item) })
+                @Html.DisplayName(item.ToString())
+            </label>
+        </div>
+    }
+<label id="lblEnumValue" style="display:none;">@strEnumValue</label>
+
+
+<div style="display:none;">
+    @{
+        foreach (var item in objdetailedMenuPermission)
+        {
+            string strActionId = "";
+            foreach (var actionId in item.ActionId)
+            {
+                strActionId += @actionId + ",";
+            }
+            <label id="lbl_@item.MenuId">@strActionId</label>
+            <br />
+            <br />
+        }
+    }
+</div>

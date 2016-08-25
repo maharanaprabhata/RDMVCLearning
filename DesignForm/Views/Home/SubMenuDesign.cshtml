@@ -1,0 +1,117 @@
+﻿@using Focus.Security.DataStructs;
+@using DesignForm.Models;
+
+
+@{
+    DetailedMenuPermission[] objdetailedMenuPermission = ReadProfile.Get_detailedMenuPermission();
+    List<SelectListItem> objSelectListItem = new List<SelectListItem>();
+    foreach (var item in objdetailedMenuPermission)
+    {
+        objSelectListItem.Add(new SelectListItem { Text = item.MenuText.Replace("_", string.Empty), Value = item.MenuId.ToString() });
+    }
+    ViewBag.MenuItem = objSelectListItem;
+}
+<script>
+    $(document).ready(function () {
+        var lblActionid = "";
+        $("#divTree a").click(function () {
+            var lblEnumValue = $("#lblEnumValue").text().split(",");
+            for (i = 0; i < lblEnumValue.length-1; i++) {
+                $("#div_" + lblEnumValue[i]).hide();
+            }
+            var id = $(this).attr('id');
+            lblActionid = $("#lbl_" + id).text().split(",");
+            for (i = 0; i < lblActionid.length - 1; i++) {
+                $("#chk_" + lblActionid[i]).prop("checked", false);
+                $("#div_" + lblActionid[i]).show();
+            }
+        });
+        $("#btnSelectAll").click(function () {
+            for (i = 0; i < lblActionid.length - 1; i++) {
+                $("#chk_" + lblActionid[i]).prop("checked",true);
+            }
+        });
+        $("#btnUnselectAll").click(function () {
+            for (i = 0; i < lblActionid.length - 1; i++) {
+                $("#chk_" + lblActionid[i]).prop("checked", false);
+            }
+        });
+        $("#mainTab a").mouseover(function () {
+            $(this).css("color", "aqua")
+        }).mouseout(function () { $(this).css("color", "") });
+        $(".glyphicon-plus-sign").click(function (e) {
+            e.preventDefault();
+            $(this).toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
+            $(this).closest('li').children('ul').slideToggle(1000);
+            var id = $(this).closest('li').find('a').attr('id');
+            $(this).hasClass("glyphicon-minus-sign") ? $("#" + id).addClass("changeColor1") : $("#" + id).removeClass("changeColor1");
+        });
+    });
+</script>
+
+<div class="col-xs-12">
+    <ol class="list-inline li" id="mainTab">
+        <li><a href="#" class="mouseHover">Home</a></li>/
+        <li><a href="#" class="mouseHover">Security</a></li>/
+        <li><a href="#" class="mouseHover">Create Profile</a></li>
+        <li class="navbar-right">
+            <button type="submit" class="btn-default1" id="btnSave" name="strCommand" value="Save">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+                <h5 class="hr1">Save</h5>
+            </button>
+            <button type="submit" class="btn-default1" id="btnDelete" name="strCommand" value="Delete">
+                <span class="glyphicon glyphicon-trash"></span>
+                <h5 class="hr1">Delete</h5>
+            </button>
+            <button type="submit" class="btn-default1" id="btnLoadForm" name="strCommand" value="LoadForm">
+                <span class="glyphicon glyphicon-file"></span>
+                <h5 class="hr1">Load Form</h5>
+            </button>
+            <button type="button" id="btnCancel" class="btn-default1">
+                <span class="glyphicon glyphicon-remove-circle"></span>
+                <h5 class="hr1">Cancel</h5>
+            </button>
+        </li>
+    </ol>
+</div>
+<div class="col-xs-12">
+    <hr class="hr1" style="background-color:black;height:1px;" />
+</div>
+<div class="col-xs-12">
+    <div class="col-xs-12 col-sm-12 col-md-1 col-lg-1" style="width: 10.1%">
+        Profile Name
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+        @Html.DropDownList("MenuItem", null, "select", new { @class = "form-control Fselect" })
+    </div>
+</div>
+<div class="col-xs-12">
+    <br />
+</div>
+<div class="col-xs-12">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Menu
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            Restriction
+        </div>
+    </div>
+</div>
+<div class="col-xs-12">
+    <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+        <hr style="background-color:black;height:1px;" />
+    </div>
+</div>
+<div class="col-xs-12">
+    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4" style="border-right:1px solid black;" id="divTree">
+        @Html.Partial("TreeViewPartialView")
+    </div>
+    <div class="col-xs-6 col-sm-6 col-md-8 col-lg-8" style="height:380px;overflow-y:scroll;">
+        @Html.Partial("ChkBoxPartialView")
+    </div>
+    <div class="text-right" style="padding-top:10px;">
+        <button id="btnSelectAll" class="btn-default">Select All</button>&nbsp;
+        <button id="btnUnselectAll" class="btn-default">Unselect All</button>
+    </div>
+</div>

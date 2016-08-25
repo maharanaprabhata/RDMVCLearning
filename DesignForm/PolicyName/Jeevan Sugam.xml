@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Jeevan Sugam</PolicyName>
+  <PasswordLength>12</PasswordLength>
+  <Complexity>5</Complexity>
+  <DNAPrevious>8</DNAPrevious>
+  <PswExpDate>25/08/2016</PswExpDate>
+  <OTPExpMin>30</OTPExpMin>
+  <NoInvalidAttempts>1</NoInvalidAttempts>
+  <LockOutPeriod>12</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>true</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Jeevan Anurag</PolicyName>
+  <PasswordLength>9</PasswordLength>
+  <Complexity>1</Complexity>
+  <DNAPrevious>9</DNAPrevious>
+  <PswExpDate>04/09/2016</PswExpDate>
+  <OTPExpMin>35</OTPExpMin>
+  <NoInvalidAttempts>10</NoInvalidAttempts>
+  <LockOutPeriod>4</LockOutPeriod>
+  <LockType>0</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>false</ChangePswAftLogin>
+  <CannotChangePsw>false</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>false</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

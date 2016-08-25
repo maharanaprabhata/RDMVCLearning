@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Marriage Endowment with Profits</PolicyName>
+  <PasswordLength>12</PasswordLength>
+  <Complexity>6</Complexity>
+  <DNAPrevious>7</DNAPrevious>
+  <PswExpDate>17/08/2016</PswExpDate>
+  <OTPExpMin>20</OTPExpMin>
+  <NoInvalidAttempts>18</NoInvalidAttempts>
+  <LockOutPeriod>1</LockOutPeriod>
+  <LockType>2</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>false</CannotChangePsw>
+  <OTPLogin>false</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

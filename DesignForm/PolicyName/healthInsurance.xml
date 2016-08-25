@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>healthInsurance</PolicyName>
+  <PasswordLength>6</PasswordLength>
+  <Complexity>2</Complexity>
+  <DNAPrevious>10</DNAPrevious>
+  <PswExpDate>31/08/2016</PswExpDate>
+  <OTPExpMin>59</OTPExpMin>
+  <NoInvalidAttempts>12</NoInvalidAttempts>
+  <LockOutPeriod>1</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>true</CannotChangePsw>
+  <OTPLogin>false</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

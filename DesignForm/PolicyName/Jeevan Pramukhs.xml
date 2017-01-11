@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Jeevan Pramukhs</PolicyName>
+  <PasswordLength>10</PasswordLength>
+  <Complexity>2</Complexity>
+  <DNAPrevious>10</DNAPrevious>
+  <PswExpDate>18/08/2016</PswExpDate>
+  <OTPExpMin>7</OTPExpMin>
+  <NoInvalidAttempts>4</NoInvalidAttempts>
+  <LockOutPeriod>45</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>true</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

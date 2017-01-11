@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    @Styles.Render("~/Contents/css")
+    @Scripts.Render("~/bundles/jqueryval")
+    <title>_FocusMaster</title>
+</head>
+<body>
+    <div class="container">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div style="height:50px;"></div>
+        </footer>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

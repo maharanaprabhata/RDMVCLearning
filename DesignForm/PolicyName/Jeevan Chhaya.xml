@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Jeevan Chhaya</PolicyName>
+  <PasswordLength>20</PasswordLength>
+  <Complexity>1</Complexity>
+  <DNAPrevious>4</DNAPrevious>
+  <PswExpDate>12/09/2016</PswExpDate>
+  <OTPExpMin>35</OTPExpMin>
+  <NoInvalidAttempts>9</NoInvalidAttempts>
+  <LockOutPeriod>30</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>true</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

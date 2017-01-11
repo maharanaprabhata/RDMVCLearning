@@ -1,0 +1,26 @@
+﻿@using DesignForm.Models
+@model PasswordPolicy
+
+@{
+    ViewBag.Title = "Import";
+}
+
+<h2>Import</h2>
+<ul>
+   <li>@Model.PolicyName</li>
+    <li>@Model.PasswordLength</li>
+    <li>@Model.Complexity</li>
+    <li>@Model.DNAPrevious</li>
+    <li>@Model.PswExpDate</li>
+    <li>@Model.OTPExpMin</li>
+    <li>@Model.NoInvalidAttempts</li>
+    <li>@Model.LockOutPeriod</li>
+    <li>@Model.LockType</li>
+    <li>@Model.SendE_mail</li>
+    <li>@Model.ChangePswAftLogin</li>
+    <li>@Model.CannotChangePsw</li>
+    <li>@Model.OTPLogin</li>
+    <li>@Model.SendEmailOnLoginSuccess</li>
+    <li>@Model.SendEmailOnLoginFailur</li>
+</ul>
+<input type="text" value="PolicyName" />

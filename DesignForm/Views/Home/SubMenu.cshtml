@@ -1,0 +1,89 @@
+﻿@using Focus.Security.DataStructs;
+@using Focus.Common.DataStructs;
+
+@{
+    ViewBag.Title = "SubMenu";
+}
+<script src="~/scripts/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".glyphicon-plus-sign").click(function (e) {
+            e.preventDefault();
+            $(this).toggleClass("glyphicon-plus-sign glyphicon-minus-sign");
+            $(this).closest('li').children('ul').slideToggle(1000);
+            var id = $(this).closest('li').find('a').attr('id');
+            $(this).hasClass("glyphicon-minus-sign") ? $("#" + id).addClass("changeColor1") : $("#" + id).removeClass("changeColor1");
+        });
+    });
+</script>
+
+<style>
+    /*Here We will add some css for style our treeview*/
+    .glyphicon-minus-sign {
+        color: aqua;
+    }
+
+    .treeview ul {
+        font: 14px Arial, Sans-Serif;
+        margin: 0px;
+        padding-left: 20px;
+        list-style: none;
+    }
+
+    .treeview > li > a {
+        font-weight: bold;
+    }
+
+    .treeview li {
+    }
+
+    .changeColor1 {
+        color: aqua;
+    }
+
+    .treeview li > ul {
+        display: none;
+    }
+
+    .treeview li a {
+        padding: 4px;
+        font-size: 12px;
+        display: inline-block;
+        text-decoration: none;
+        width: auto;
+    }
+</style>
+@*<div style="border:solid 1px black; padding:10px; background-color:#FAFAFA;height:400px;overflow-x:scroll;overflow-y:scroll;">
+    <div class="treeview">
+        @{
+            DetailedMenuPermission[] objdetailedMenuPermission = (DetailedMenuPermission[])ExportImport.Import(@"F:\NighaSir\Menus.xml", typeof(DetailedMenuPermission[]));
+        }
+        @if (objdetailedMenuPermission != null && objdetailedMenuPermission.Count() > 0)
+        {
+            <ul>
+                @Treeviews.GetTreeView(objdetailedMenuPermission, objdetailedMenuPermission.FirstOrDefault().MenuGroupId)
+            </ul>
+        }
+    </div>
+</div>*@
+
+<div>
+    @{
+        DetailedMenuPermission[] objdetailedMenuPermission = (DetailedMenuPermission[])ExportImport.Import(@"F:\NighaSir\Menus.xml", typeof(DetailedMenuPermission[]));
+    }
+    <ul>
+        @{ 
+            foreach(var item in objdetailedMenuPermission)
+            {
+                <li>@item.MenuId + @item.MenuText
+                    <ul>
+                        @foreach(var actionId in item.ActionId)
+                        {
+                            <li>@actionId</li>
+                        }
+                    </ul>
+                </li>
+            }
+        }
+    </ul>
+</div>

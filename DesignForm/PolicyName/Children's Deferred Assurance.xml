@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Children's Deferred Assurance</PolicyName>
+  <PasswordLength>6</PasswordLength>
+  <Complexity>6</Complexity>
+  <DNAPrevious>10</DNAPrevious>
+  <PswExpDate>22/09/2016</PswExpDate>
+  <OTPExpMin>20</OTPExpMin>
+  <NoInvalidAttempts>20</NoInvalidAttempts>
+  <LockOutPeriod>20</LockOutPeriod>
+  <LockType>3</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>false</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

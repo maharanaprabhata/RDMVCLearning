@@ -1,0 +1,253 @@
+﻿@using DesignForm.Models
+@model PasswordPolicy
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#OTPExp").spinner({
+            min: 0,
+            max: 59,
+        });
+        $("#DNAPrev1").spinner({
+            min: 1,
+            max: 10
+        });
+        $("#PasswordExp").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            minDate: 0,
+            dateFormat: "dd/mm/yy"
+        });
+        $("#txtPolicyName").on("focusout keyup", function () {
+            var value = $(this).val();
+            if (value == "")
+                $("#lblPolicyName").html("<b style='color:red;'>Policy Name is required</b>").show();
+            else if (!value == "") {
+                $("#lblPolicyName").hide();
+            }
+        });
+        $("#txtPassword").on("focusout keyup", function () {
+            var value = $(this).val();
+            if (value == "")
+                $("#lblPolicyPassword").html("<b style='color:red;'>Policy password is required</b>").show();
+            else if (value == 0)
+                $("#lblPolicyPassword").html("<b style='color:red;'>Policy should not be Zero(0) </b>").show();
+            else if ((!Number(value)) || value < 0)
+                $("#lblPolicyPassword").html("<b style='color:red;'>Policy password is should be (+)Number</b>").show();
+            else if (!value == "" || value == 0)
+                $("#lblPolicyPassword").hide();
+        });
+        $("#btnSave").click(function () {
+            if ($("#txtPolicyName").val() == "") {
+                $("#lblPolicyName").html("<b style='color:red;'>Policy Name is required</b>").show();
+                return false;
+            }
+            if ($("#txtPassword").val() == 0) {
+                $("#lblPolicyPassword").html("<b style='color:red;'>Policy password is should be (+)Number</b>").show();
+                return false;
+            }
+        });
+        $("#btnDelete").click(function () {
+            if ($("#txtPolicyName").attr("readonly") != "readonly") {
+                $("#displayError").dialog();
+                return false;
+            }
+        });
+        
+    });
+</script>
+@using (Html.BeginForm("Save", "Home", FormMethod.Post,new { id = "form1" }))
+{
+    <div id="displayError" style="display:none"><b style="color:red;">Please Select Policy Name</b></div>
+    <div class="row">
+        <div class="col-sm-1"><input type="button" id="btnFinance" value="Finance" /></div>
+        <div class="col-sm-11" id="divMain">
+            <div class="row">
+                <div class="col-sm-9">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Security</a></li>
+                        <li class="breadcrumb-item active"><a href="~/Home/Index">Password Policy</a></li>
+                    </ol>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row navbar-right text-center">
+                        <div class="col-sm-6">
+                            <button type="submit" class="btn-default1" id="btnSave" name="command" value="Save">
+                                <span class="glyphicon glyphicon-floppy-disk"></span>
+                                <h5 class="hr1">SAVE</h5>
+                            </button>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" id="btnCancel" class="btn-default1">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <h5 class="hr1">Cancel</h5>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr1" style="background-color:black;height:1px;" />
+        </div>
+    </div>
+    <div class="row" id="divMain1">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-4" style="border-right:1px solid #000000;height: 100%;">
+            <b>Policy Name</b>
+            <hr style="background-color:black;height:1px;" />
+            <div class="col-sm-12" style="height:540px;overflow-y:scroll;">
+                <ul>
+                    @{
+                        try
+                        {
+                            foreach (string fileName in Directory.GetFiles(@"F:\NighaSir\Day_1\DesignForm\DesignForm\PolicyName\"))
+                            {
+                                string s = Path.GetFileName(fileName).ToString();
+                                s = s.Remove(s.Length - 4, 4);
+                            <li>@Html.ActionLink(s, "Index", new { strFileName = s })</li>
+                            }
+                        }
+                        catch
+                        {
+                            <li>HI error occrured!!!SSS</li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="col-sm-12 bottom">
+                <button class="btn-default" type="submit" id="btnAdd" name="command" value="Add">Add</button>&nbsp;
+                <button class="btn-default" type="reset">Cancel</button>&nbsp;
+                <button class="btn-default" type="submit" id="btnDelete" name="command" value="Delete">Delete</button>&nbsp;
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-sm-3">Policy Name</div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="txtPolicyName" name="PolicyName" type="text" placeholder="Policy Name" value="@Model.PolicyName" @ViewBag.value />
+                    <label id="lblPolicyName" hidden></label>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">Password Length</div>
+                <div class="col-sm-8">
+                    <input class="form-control" id="txtPassword" name="PasswordLength" type="text" value="@Model.PasswordLength">
+                    <label id="lblPolicyPassword" hidden></label>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">Complexity</div>
+                <div class="col-sm-8">
+                    @Html.DropDownList("Complexity", new List<SelectListItem>
+                     {
+                        new SelectListItem { Text = "Simple", Value="0" },
+                        new SelectListItem { Text = "Alphabets", Value="1" },
+                        new SelectListItem { Text = "Alpha-Numeric", Value="2" },
+                        new SelectListItem { Text = "Alpha-Numeric*", Value="3" },
+                        new SelectListItem { Text = "Numeric", Value="4" },
+                        new SelectListItem { Text = "Alpha-Numeric &amp; Special Characters", Value="5" },
+                        new SelectListItem { Text = "Alpha-Numeric &amp; Special Characters*", Value="6" },
+                     }, htmlAttributes: new { @class = "form-control" })
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">Do not Allow Previous</div>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <input id="DNAPrev1" name="DNAPrevious" readonly type="text" value="@Model.DNAPrevious">
+                        </div>
+                        <div class="col-sm-5 text-center"><label id="lblPsw">Password</label></div>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">Password Expiry Date</div>
+                <div class="col-sm-8"><input class="form-control" id="PasswordExp" name="PswExpDate" type="text" value="@Model.PswExpDate" autocomplete="off"></div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row" id="staticParent">
+                <div class="col-sm-3">OTP Expiry in minute</div>
+                <div class="col-sm-8"><input id="OTPExp" name="OTPExpMin" value="@Model.OTPExpMin" readonly type="text"></div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-11"><h3>Loking Permission</h3></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">No of Invalid Attempts</div>
+                <div class="col-sm-8"><input class="form-control" id="NoOfInvalid" name="NoInvalidAttempts" type="text" value="@Model.NoInvalidAttempts"></div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3">Lockout Period</div>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <input class="form-control" id="LockOut" name="LockOutPeriod" type="text" value="@Model.LockOutPeriod">
+                        </div>
+                        <div class="col-sm-6">
+                            @Html.DropDownList("LockType", new List<SelectListItem>
+                     {
+                        new SelectListItem { Text = "Unit", Value="0" },
+                        new SelectListItem { Text = "Minute", Value="1" },
+                        new SelectListItem { Text = "Hour", Value="2" },
+                        new SelectListItem { Text = "Day", Value="3" },
+                     }, htmlAttributes: new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-8">
+                    <div class="checkbox">
+                        <label><input type="checkbox" value="true" name="SendE_mail" checked="@Model.SendE_mail">Send E-Mail<input name="SendE_mail" type="hidden" value="false" /></label>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-8">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="true" name="ChangePswAftLogin" checked="@Model.ChangePswAftLogin" />Change Password after first login<input name="ChangePswAftLogin" type="hidden" value="false" />
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="true" name="CannotChangePsw" checked="@Model.CannotChangePsw">Cannot Change Password<input name="CannotChangePsw" type="hidden" value="false" /></label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="true" name="OTPLogin" checked="@Model.OTPLogin">OTP based login<input name="OTPLogin" type="hidden" value="false" /></label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="true" name="SendEmailOnLoginSuccess" checked="@Model.SendEmailOnLoginSuccess">Send E-Mail on Login Success<input name="SendEmailOnLoginSuccess" type="hidden" value="false" /></label>
+                            </div>
+                            <div class="checkbox">
+                                <label><input type="checkbox" value="true" name="SendEmailOnLoginFailur" checked="@Model.SendEmailOnLoginFailur">Send E-Mail on Login Failure<input name="SendEmailOnLoginFailur" type="hidden" value="false" /></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+    </div>
+                        }

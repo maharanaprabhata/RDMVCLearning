@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Jeevan Shree - 1</PolicyName>
+  <PasswordLength>834</PasswordLength>
+  <Complexity>5</Complexity>
+  <DNAPrevious>3</DNAPrevious>
+  <PswExpDate>04/09/2016</PswExpDate>
+  <OTPExpMin>35</OTPExpMin>
+  <NoInvalidAttempts>10</NoInvalidAttempts>
+  <LockOutPeriod>3</LockOutPeriod>
+  <LockType>0</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>false</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

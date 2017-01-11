@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Jeevan Sathi</PolicyName>
+  <PasswordLength>15</PasswordLength>
+  <Complexity>0</Complexity>
+  <DNAPrevious>4</DNAPrevious>
+  <PswExpDate>22/08/2016</PswExpDate>
+  <OTPExpMin>20</OTPExpMin>
+  <NoInvalidAttempts>10</NoInvalidAttempts>
+  <LockOutPeriod>15</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>false</ChangePswAftLogin>
+  <CannotChangePsw>false</CannotChangePsw>
+  <OTPLogin>false</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

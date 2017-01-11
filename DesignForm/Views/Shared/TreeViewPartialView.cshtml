@@ -1,0 +1,13 @@
+﻿@using Focus.Security.DataStructs;
+@using DesignForm.Models;
+@{ 
+    DetailedMenuPermission[] objdetailedMenuPermission = ReadProfile.Get_detailedMenuPermission();
+}
+<div class="treeview" style="overflow-y:scroll;height:390px;">
+    @if (objdetailedMenuPermission != null && objdetailedMenuPermission.Count() > 0)
+            {
+        <ul>
+            @Treeviews.GetTreeView(objdetailedMenuPermission, objdetailedMenuPermission.FirstOrDefault().MenuGroupId)
+        </ul>
+    }
+</div>

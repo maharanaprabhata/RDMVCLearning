@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Contents/Design.css" rel="stylesheet" type="text/css" />
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-11">
+        <div class="row">
+            <div class="col-sm-9">
+                <ul class="list-inline" style="font-size:20px;">
+                    <li><a href="#">Home</a></li>/
+                    <li><a href="#">Security</a></li>/
+                    <li><a href="#">Password Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-3">
+                <div class="row navbar-right text-center">
+                    <div class="col-sm-6">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-floppy-disk logo"></span>
+                            <h5 class="hr1">SAVE</h5>
+                        </a>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-remove-circle logo"></span>
+                            <h5 class="hr1">Cancel</h5>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hr1" style="background-color:black;height:1px;" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4" style="border-right:1px solid #000000;height: 100%;">
+        <b>Policy Name</b>
+        <hr style="background-color:black;height:1px;" />
+        <div class="col-sm-12" style="height:520px;">
+            <ul>
+                <li><a href="#">Policy 1</a></li>
+                <li><a href="#">Password Policy</a></li>
+                <li><a href="#">Simple Policy</a></li>
+                <li><a href="#">Policy 1</a></li>
+                <li><a href="#">Password Policy</a></li>
+                <li><a href="#">Simple Policy</a></li>
+                <li><a href="#">Policy 1</a></li>
+                <li><a href="#">Password Policy</a></li>
+                <li><a href="#">Simple Policy</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-12 bottom">
+            <button class="btn-default" type="button">Add</button>&nbsp;
+            <button class="btn-default" type="button">Cancel</button>&nbsp;
+            <button class="btn-default" type="button">Delete</button>&nbsp;
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <div class="row">
+            <div class="col-sm-3">Policy Name</div>
+            <div class="col-sm-8"><input class="form-control" id="name" name="name" type="text"></div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">Password Length</div>
+            <div class="col-sm-8"><input class="form-control" id="Password" name="Password" type="text"></div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">Complexity</div>
+            <div class="col-sm-8">
+                @Html.DropDownList("Complexity", new List<SelectListItem>
+           {
+               new SelectListItem { Text = "XYZ", Value = "0" },
+               new SelectListItem { Text = "ABC", Value = "1" }
+           }, "Select", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">Do not Allow Previous</div>
+            <div class="col-sm-8"><input class="form-control" id="Password" name="Password" placeholder="Password" type="text"></div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">Password Expiry Date</div>
+            <div class="col-sm-8"><input class="form-control" id="Password" name="Password" type="text"></div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">OTP Expiry in minute</div>
+            <div class="col-sm-8"><input class="form-control" id="Password" name="Password" type="text"></div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-11"><h3>Loking Permission</h3></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">No of Invalid Attempts</div>
+            <div class="col-sm-8"><input class="form-control" id="Password" name="Password" type="text"></div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3">Lockout Period</div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input class="form-control" id="Password" name="Password" type="text">
+                    </div>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("Lockout Period", new List<SelectListItem>
+                  {
+                      new SelectListItem {Text="ABC",Value="" },
+                      new SelectListItem {Text="XYA",Value="" }
+                  }, "Select", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Send E-Mail</label>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Change Password after first login</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Cannot Change Password</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">OTP based login</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Send E-Mail on Login Success</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="">Send E-Mail on Login Failure</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,257 @@
+﻿@using DesignForm.Models
+@model PasswordPolicy
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#PasswordExp").datepicker({ changeMonth: true, changeYear: true, minDate: 0, dateFormat: "dd/mm/yy" });
+        $("#txtPolicyName").on("focusout keyup", function () {
+            var error = ""; var value = $(this).val();
+            value == "" ? error = "Policy Name is required" : value.charCodeAt(0) == 32 && (error = "Policy Name Not Allow Space!!!");
+            error != "" ? $("#lblPolicyName").html("<b style='color:red;'>" + error + "</b>").show() : $("#lblPolicyName").hide();
+        });
+        $("#txtPassword").on("focusout keyup", function () {
+            var value = $(this).val();
+            var error = "";
+            value == "" ? error = "password is required" : value == 0 ? error = "Policy should not be Zero(0)" : ((!Number(value)) || value < 0) && (error = "Policy password is should be (+)Number");
+            error != "" ? $("#lblPolicyPassword").html("<b style='color:red;'>" + error + "</b>").show() : $("#lblPolicyPassword").hide();
+        });
+        $("#btnSave").click(function () {
+            var error = 0;
+            $("#txtPolicyName").val() == "" ? ($("#lblPolicyName").html("<b style='color:red;'>Policy Name is required</b>").show(), error++) : error;
+            $("#txtPolicyName").val().charCodeAt(0) == 32 ? ($("#lblPolicyName").html("<b style='color:red;'>Policy Name Not Allow Space!!!</b>").show(), error++) : error;
+            $("#txtPassword").val() == 0 ? ($("#lblPolicyPassword").html("<b style='color:red;'>Policy should not be Zero(0) </b>").show(), error++) : error;
+            return error != 0 ? false : true;
+        });
+        $("#btnDelete").click(function () {
+            return $("#txtPolicyName").attr("readonly") != "readonly" ? ($("#displayError").dialog(), false) : true;
+        });
+        $("#ddlComplexity").change(function () {
+            var value = $(this).val(); var ddlText = "";
+            value == "2" ? ddlText = "Alpha-Numeric" : value == "3" ? ddlText = "Alpha-Numeric*" : value == "5" ? ddlText = "Alpha-Numeric &amp; Special Characters" : (value == "6") && (ddlText = "Alpha-Numeric &amp; Special Characters*");
+            ddlText == "" ? $("#lblComplexity").hide() : $("#lblComplexity").html("<b style='color:red;'>" + ddlText + "</b>").show()
+        });
+    });
+    function Increment(max, txtid) {
+        value = document.getElementById(txtid.id).value;
+        id = setInterval(onhold, 100);
+        function onhold() {
+            value < max ? value++ : value = max;
+            document.getElementById(txtid.id).value = value < 10 ? "0" + value : value;
+        }
+    }
+    function Decreament(min, txtid) {
+        value = document.getElementById(txtid.id).value;
+        id = setInterval(onhold, 100);
+        function onhold() {
+            value > min ? value-- : value = min;
+            document.getElementById(txtid.id).value = value < 10 ? "0" + value : value;
+        }
+    }
+    function stop() {
+        clearInterval(id);
+    }
+</script>
+@using (Html.BeginForm("Save", "Task1Final", FormMethod.Post, new { id = "form1" }))
+{
+    <div id="displayError" style="display:none"><b style="color:red;">Please Select Policy Name</b></div>
+    <div class="col-xs-12">
+        <ol class="list-inline li">
+            <li><a href="#">Home</a></li>/
+            <li><a href="#">Security</a></li>/
+            <li><a href="~/Home/Index">Password Policy</a></li>
+            <li class="navbar-right">
+                <button type="submit" class="btn-default1" id="btnSave" name="strcommand" value="Save">
+                    <span class="glyphicon glyphicon-floppy-disk"></span>
+                    <h5 class="hr1">SAVE</h5>
+                </button>
+                <button type="button" id="btnCancel" class="btn-default1">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                    <h5 class="hr1">Cancel</h5>
+                </button>
+            </li>
+        </ol>
+    </div>
+    <div class="col-xs-12">
+        <hr class="hr1" style="background-color:black;height:1px;" />
+    </div>
+    <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" style="border-right:1px solid #000000;">
+            <b>Policy Name</b>
+            <hr style="background-color:black;height:1px;" />
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="height:540px;overflow-y:scroll;">
+                <ul>
+                    @{
+                        foreach (string fileName in Directory.GetFiles(@"F:\NighaSir\Day_1\DesignForm\DesignForm\PolicyName\"))
+                        {
+                            string s = Path.GetFileName(fileName).ToString();
+                            s = s.Remove(s.Length - 4, 4);
+                            <li>@Html.ActionLink(s, "Index",new { strFileName = s })</li>
+                        }
+                    }
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bottom">
+                <button class="btn-default" type="submit" id="btnAdd" name="strcommand" value="Add">Add</button>&nbsp;
+                <button class="btn-default" type="reset">Cancel</button>&nbsp;
+                <button class="btn-default" type="submit" id="btnDelete" name="strcommand" value="Delete">Delete</button>&nbsp;
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">Policy Name</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <input class="form-control Ftxtbox" id="txtPolicyName" name="PolicyName" type="text" placeholder="Policy Name" value="@Model.PolicyName" @ViewBag.value />
+                    <label id="lblPolicyName" hidden></label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">Password Length</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <input class="form-control Ftxtbox" id="txtPassword" name="PasswordLength" type="text" value="@Model.PasswordLength">
+                    <label id="lblPolicyPassword" hidden></label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">Complexity</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    @Html.DropDownList("Complexity", new List<SelectListItem>
+                     {
+                        new SelectListItem { Text = "Simple", Value="0" },
+                        new SelectListItem { Text = "Alphabets", Value="1" },
+                        new SelectListItem { Text = "Alpha-Numeric", Value="2" },
+                        new SelectListItem { Text = "Alpha-Numeric*", Value="3" },
+                        new SelectListItem { Text = "Numeric", Value="4" },
+                        new SelectListItem { Text = "Alpha-Numeric &amp; Special Characters", Value="5" },
+                        new SelectListItem { Text = "Alpha-Numeric &amp; Special Characters*", Value="6" },
+                     }, htmlAttributes: new { @class = "form-control Fselect", id = "ddlComplexity" })
+                    <label id="lblComplexity" hidden></label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">Do not Allow Previous</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    @*<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">*@
+                    @*<input id="DNAPrev1" name="DNAPrevious" readonly type="text" value="@Model.DNAPrevious" class="Ftxtbox">*@
+                    <div class="input-group spinner">
+                        <input id="DNAPrev" name="DNAPrevious" readonly type="text" value="@Model.DNAPrevious" class="Ftxtbox form-control" />
+                        <div class="input-group-btn-vertical">
+                            <button class="btn btn-default" type="button" onmousedown="Increment(10, DNAPrev);" onmouseup="stop()"><i class="glyphicon glyphicon-chevron-up glaphycon"></i></button>
+                            <button class="btn btn-default" type="button" onmousedown="Decreament(1, DNAPrev);" onmouseup="stop()"><i class="glyphicon glyphicon-chevron-down glaphycon"></i></button>
+                        </div>
+                    </div>
+                    @*</div>
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 text-center"><label id="lblPsw">Password</label></div>*@
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">Password Expiry Date</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="input-group input-group-btn-vertical">
+                        <input class="form-control Ftxtbox" id="PasswordExp" name="PswExpDate" type="text" value="@Model.PswExpDate" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">OTP Expiry in minute</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    @*<input id="OTPExp" name="OTPExpMin" value="@Model.OTPExpMin" readonly type="text" class="Ftxtbox">*@
+                    <div class="input-group spinner">
+                        <input id="OTPExp" name="OTPExpMin" value="@Model.OTPExpMin" readonly type="text" class="Ftxtbox form-control" />
+                        <div class="input-group-btn-vertical">
+                            <button class="btn btn-default" type="button" onmousedown="Increment(59, OTPExp);" onmouseup="stop()"><i class="glyphicon glyphicon-chevron-up glaphycon"></i></button>
+                            <button class="btn btn-default" type="button" onmousedown="Decreament(0, OTPExp);" onmouseup="stop()"><i class="glyphicon glyphicon-chevron-down glaphycon"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Loking Permission</h3>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">No of Invalid Attempts</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <input class="form-control Ftxtbox" id="NoOfInvalid" name="NoInvalidAttempts" type="text" value="@Model.NoInvalidAttempts">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">Lockout Period</div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <input class="form-control Ftxtbox" id="LockOut" name="LockOutPeriod" type="text" value="@Model.LockOutPeriod">
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        @Html.DropDownList("LockType", new List<SelectListItem>
+                     {
+                        new SelectListItem { Text = "Unit", Value="0" },
+                        new SelectListItem { Text = "Minute", Value="1" },
+                        new SelectListItem { Text = "Hour", Value="2" },
+                        new SelectListItem { Text = "Day", Value="3" },
+                     }, htmlAttributes: new { @class = "form-control Fselect" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 Fcheckbox">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <label><input type="checkbox" value="true" name="SendE_mail" class="Fchkbox" checked="@Model.SendE_mail">Send E-Mail<input name="SendE_mail" type="hidden" value="false" /></label>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <br />
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3"></div>
+                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" value="true" name="ChangePswAftLogin" class="Fchkbox" checked="@Model.ChangePswAftLogin" />Change Password after first login<input name="ChangePswAftLogin" type="hidden" value="false" />
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="true" name="CannotChangePsw" class="Fchkbox" checked="@Model.CannotChangePsw">Cannot Change Password<input name="CannotChangePsw" type="hidden" value="false" /></label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="true" name="OTPLogin" class="Fchkbox" checked="@Model.OTPLogin">OTP based login<input name="OTPLogin" type="hidden" value="false" /></label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="true" name="SendEmailOnLoginSuccess" class="Fchkbox" checked="@Model.SendEmailOnLoginSuccess">Send E-Mail on Login Success<input name="SendEmailOnLoginSuccess" type="hidden" value="false" /></label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="true" name="SendEmailOnLoginFailur" class="Fchkbox" checked="@Model.SendEmailOnLoginFailur">Send E-Mail on Login Failure<input name="SendEmailOnLoginFailur" type="hidden" value="false" /></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+                        }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Ltd Payment with Profits</PolicyName>
+  <PasswordLength>8</PasswordLength>
+  <Complexity>5</Complexity>
+  <DNAPrevious>5</DNAPrevious>
+  <PswExpDate>31/08/2016</PswExpDate>
+  <OTPExpMin>25</OTPExpMin>
+  <NoInvalidAttempts>23</NoInvalidAttempts>
+  <LockOutPeriod>20</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>false</ChangePswAftLogin>
+  <CannotChangePsw>true</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>false</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

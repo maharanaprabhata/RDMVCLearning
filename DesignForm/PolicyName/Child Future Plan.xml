@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>Child Future Plan</PolicyName>
+  <PasswordLength>15</PasswordLength>
+  <Complexity>4</Complexity>
+  <DNAPrevious>3</DNAPrevious>
+  <PswExpDate>17/08/2016</PswExpDate>
+  <OTPExpMin>59</OTPExpMin>
+  <NoInvalidAttempts>5</NoInvalidAttempts>
+  <LockOutPeriod>45</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>true</ChangePswAftLogin>
+  <CannotChangePsw>true</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>false</SendEmailOnLoginFailur>
+</PasswordPolicy>

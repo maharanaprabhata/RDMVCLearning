@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PasswordPolicy xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <PolicyName>New Janaraksha</PolicyName>
+  <PasswordLength>10</PasswordLength>
+  <Complexity>3</Complexity>
+  <DNAPrevious>6</DNAPrevious>
+  <PswExpDate>21/08/2016</PswExpDate>
+  <OTPExpMin>20</OTPExpMin>
+  <NoInvalidAttempts>10</NoInvalidAttempts>
+  <LockOutPeriod>30</LockOutPeriod>
+  <LockType>1</LockType>
+  <SendE_mail>true</SendE_mail>
+  <ChangePswAftLogin>false</ChangePswAftLogin>
+  <CannotChangePsw>true</CannotChangePsw>
+  <OTPLogin>true</OTPLogin>
+  <SendEmailOnLoginSuccess>true</SendEmailOnLoginSuccess>
+  <SendEmailOnLoginFailur>true</SendEmailOnLoginFailur>
+</PasswordPolicy>

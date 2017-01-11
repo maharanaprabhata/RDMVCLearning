@@ -13,6 +13,7 @@ namespace RDMVCLearn
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalFilters.Filters.Add(new MyFilter());
         }
     }
 }

@@ -124,6 +124,22 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\amazon\Views\web.config" />
+    <Content Include="Areas\shanpdeal\Views\web.config" />
+    <Content Include="Areas\ebay\Views\web.config" />
+    <Content Include="Areas\flipkart\Views\web.config" />
+    <Content Include="Areas\shanpdeal\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\shanpdeal\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\shanpdeal\Views\Home\Index.cshtml" />
+    <Content Include="Areas\flipkart\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\flipkart\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\flipkart\Views\Home\Index.cshtml" />
+    <Content Include="Areas\ebay\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\ebay\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\ebay\Views\Home\Index.cshtml" />
+    <Content Include="Areas\amazon\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\amazon\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\amazon\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -136,10 +152,24 @@
     <Compile Include="App_Start\MyFilter.cs" />
     <Compile Include="App_Start\Myloadview.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\amazon\amazonAreaRegistration.cs" />
+    <Compile Include="Areas\amazon\amazonMenuhandler.cs" />
+    <Compile Include="Areas\amazon\Controllers\HomeController.cs" />
+    <Compile Include="Areas\ebay\Controllers\HomeController.cs" />
+    <Compile Include="Areas\ebay\ebayAreaRegistration.cs" />
+    <Compile Include="Areas\ebay\ebayMenuhandler.cs" />
+    <Compile Include="Areas\flipkart\Controllers\HomeController.cs" />
+    <Compile Include="Areas\flipkart\flipkartAreaRegistration.cs" />
+    <Compile Include="Areas\flipkart\flipkartMenuhandler.cs" />
+    <Compile Include="Areas\shanpdeal\Controllers\HomeController.cs" />
+    <Compile Include="Areas\shanpdeal\shanpdealAreaRegistration.cs" />
+    <Compile Include="Areas\shanpdeal\shanpdealMenuhandler.cs" />
     <Compile Include="Controllers\FilterController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MenuHandlerEnum.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +185,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Filter\Index.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -164,7 +195,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Areas\amazon\Models\" />
+    <Folder Include="Areas\ebay\Models\" />
+    <Folder Include="Areas\flipkart\Models\" />
+    <Folder Include="Areas\shanpdeal\Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -41,12 +41,21 @@ namespace RDMVCLearn.Controllers
             }
             if (viewName != "" && controllerName != "")
             {
-                return RedirectToAction(viewName, controllerName, new { area = areaName, HttpMethod = FormMethod.Get });
+                return RedirectToAction(viewName, controllerName, new { area = areaName, HttpMethod = FormMethod.Post });
             }
             else
             {
                 return RedirectToAction("Error", "Home");
             }
+        }
+
+        public ActionResult flipkart()
+        {
+            return RedirectToAction("offer");
+        }
+        public ActionResult offer()
+        {
+            return View();
         }
     }
 }

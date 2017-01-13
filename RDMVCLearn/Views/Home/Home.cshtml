@@ -1,25 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Home";
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<a href="#" onclick="LoadView('flipkart');">FlipKart</a><br />
-<a href="#" onclick="LoadView('amazon');">AmaZon</a><br />
-<a href="#" onclick="LoadView('ebay');">EbeY</a><br />
-<a href="#" onclick="LoadView('shanpdeal');">ShanpDeal</a><br />
-
-<script>
-    function LoadView(data) {
-        debugger;
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                alert("Redirect Successfully!!!");
-                window.location.href = 'http://localhost:57339/flipkart/home/index';
-            }
-        }
-        xhttp.open("POST", "/Home/LoadView", true);
-        xhttp.setRequestHeader('Content-Type', 'application/json');
-        xhttp.send(JSON.stringify({ mType: data }));
-    }
-</script>
+<h1>Welcome</h1>

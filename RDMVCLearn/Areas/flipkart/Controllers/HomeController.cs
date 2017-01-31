@@ -13,5 +13,9 @@ namespace RDMVCLearn.Areas.flipkart.Controllers
         {
             return View();
         }
+        public ActionResult Default()
+        {
+            return RedirectToAction("Index","Home",new {area="flipkart",HttpMethod = FormMethod.Post });
+        }
     }
 }

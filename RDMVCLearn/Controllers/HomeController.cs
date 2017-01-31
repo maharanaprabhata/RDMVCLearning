@@ -42,6 +42,7 @@ namespace RDMVCLearn.Controllers
             if (viewName != "" && controllerName != "")
             {
                 return RedirectToAction(viewName, controllerName, new { area = areaName, HttpMethod = FormMethod.Post });
+                //return RedirectToAction("flipkart");
             }
             else
             {

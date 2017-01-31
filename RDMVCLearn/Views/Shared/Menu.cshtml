@@ -24,8 +24,9 @@
             xhttp.onreadystatechange = function () {
                 debugger;
                 if (this.readyState == 4 && this.status == 200) {
+                    debugger
                     alert("Redirect Successfully!!!");
-                    document.getElementById("divContainer").innerHTML = "";
+                    document.getElementById("divContainer").innerHTML = this.responseType;
                 }
             }
             xhttp.open("POST", "/Home/LoadView", true);
